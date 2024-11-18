@@ -2,6 +2,13 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AssignGuard;
+use App\Http\Middleware\CheckPassword;
+use App\Http\Middleware\CheckVerifiedAdminEmail;
+use App\Http\Middleware\CheckVerifiedEmail;
+use App\Http\Middleware\CheckVerifyPassword;
+use App\Http\Middleware\LanguageTranslation;
+use App\Http\Middleware\TenantsMeddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,5 +72,13 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'checkPassword' => CheckPassword::class,
+        'auth.guard'  => AssignGuard::class,
+        'tenants' => TenantsMeddleware::class,
+        'languageTranslation' => LanguageTranslation::class,
+        'verifyPassword' => CheckVerifyPassword::class,
+        'verifiedEmail' => CheckVerifiedEmail::class,
+        'set.timezone' => \App\Http\Middleware\SetUserTimeZone::class,
+        'verifiedAdminEmail' => CheckVerifiedAdminEmail::class,
     ];
 }
