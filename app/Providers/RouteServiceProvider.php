@@ -19,6 +19,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
 
+     /**
+     * The path to your application's "admin home" route.
+     *
+     * Typically, users are redirected here after authentication.
+     *
+     * @var string
+     */
+    public const AdminHOME = '/admin_dashboard';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
@@ -29,11 +38,11 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            Route::middleware('api')
+            Route::middleware(['tenants', 'api'])
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
+            Route::middleware(['tenants', 'web'])
                 ->group(base_path('routes/web.php'));
         });
     }

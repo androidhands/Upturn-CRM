@@ -90,6 +90,15 @@ export default function Login({ status, canResetPassword }) {
                     <PrimaryButton className="ml-4" disabled={processing}>
                         Log in
                     </PrimaryButton>
+
+                </div>
+                <div className="flex items-center justify-end mt-4">
+                <Link
+                                href={route('register')}
+                                className="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                            >
+                                Register
+                            </Link>
                 </div>
             </form>
         </GuestLayout>

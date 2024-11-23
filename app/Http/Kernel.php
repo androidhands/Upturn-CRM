@@ -9,6 +9,7 @@ use App\Http\Middleware\CheckVerifiedEmail;
 use App\Http\Middleware\CheckVerifyPassword;
 use App\Http\Middleware\LanguageTranslation;
 use App\Http\Middleware\TenantsMeddleware;
+use App\Http\Middleware\CheckRole;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -80,5 +81,6 @@ class Kernel extends HttpKernel
         'verifiedEmail' => CheckVerifiedEmail::class,
         'set.timezone' => \App\Http\Middleware\SetUserTimeZone::class,
         'verifiedAdminEmail' => CheckVerifiedAdminEmail::class,
+        'role' => CheckRole::class,
     ];
 }
