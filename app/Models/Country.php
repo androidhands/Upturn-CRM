@@ -9,5 +9,10 @@ class Country extends Model
 {
     use HasFactory;
     protected $fillable = ['id','name','code','phoneCode','flagUrl','created_at','updated_at'];
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class);
+    }
    
 }

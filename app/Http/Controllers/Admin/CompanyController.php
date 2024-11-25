@@ -4,18 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Company\StoreCompanyRequest;
-use App\Http\Requests\Admin\Country\UpdateCompanyRequest;
+use App\Http\Requests\Admin\Company\UpdateCompanyRequest;
 use App\Models\Company;
-
+use App\Repositories\Admin\Company\CompanyRepositoryInterface;
 
 class CompanyController extends Controller
 {
+    protected $companyRepository;
+
+    public function __construct(CompanyRepositoryInterface $companyRepository){
+        $this->companyRepository = $companyRepository;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return $this->companyRepository->index();
     }
 
     /**
@@ -23,7 +28,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return $this->companyRepository->create();
     }
 
     /**
@@ -31,7 +36,7 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        //
+        return $this->companyRepository->store($request);
     }
 
     /**
@@ -39,7 +44,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return $this->companyRepository->show($company);    
     }
 
     /**
@@ -47,7 +52,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return $this->companyRepository->edit($company);
+    
     }
 
     /**
@@ -55,7 +61,7 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+        return $this->companyRepository->update($request, $company);
     }
 
     /**
@@ -63,6 +69,6 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        return $this->companyRepository->destroy($company);
     }
 }

@@ -4,7 +4,7 @@ export default function AppLogo(){
    return (
       <div className="flex justify-left">
                         <svg
-                            viewBox="0 0 2048 593" width="2000" height="580"
+                            viewBox="0 0 2048 593" 
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-16 w-auto bg-gray-100 dark:bg-gray-900"

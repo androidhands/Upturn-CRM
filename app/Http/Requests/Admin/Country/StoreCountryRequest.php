@@ -4,14 +4,14 @@ namespace App\Http\Requests\Admin\Country;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCompanyRequest extends FormRequest
+class StoreCountryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateCompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>['required','max:225'],
+            'flagUrl'=>['required','image'],
+            'code'=>['required','string'],
+            'phoneCode'=>['required','string'],
         ];
     }
 }

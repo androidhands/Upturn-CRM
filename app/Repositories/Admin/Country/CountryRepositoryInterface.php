@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Admin\Country;
 
-use App\Http\Requests\Admin\Company\StoreCountryRequest;
+use App\Http\Requests\Admin\Country\StoreCountryRequest;
 use App\Http\Requests\Admin\Country\UpdateCountryRequest;
 use App\Models\Country;
 

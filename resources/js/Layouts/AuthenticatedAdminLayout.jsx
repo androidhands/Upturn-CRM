@@ -17,13 +17,13 @@ export default function AuthenticatedAdmin({ user, header, children }) {
                     {/* Application Logo */}
                     <div className="flex items-center justify-center mb-6">
                         <Link href="/">
-                            <AppLogo></AppLogo>
-                            {/* <ApplicationLogo className="block h-10 w-auto fill-current text-gray-800 dark:text-gray-200" /> */}
+                           
+                            <ApplicationLogo className="block h-20 w-30 fill-current text-gray-800 dark:text-gray-200" />
                         </Link>
                     </div>
 
                       {/* User Dropdown */}
-                <div className="w-full px-4 justify-left">
+                <div className="w-full justify-left">
                     <Dropdown>
                         <Dropdown.Trigger>
                             <button
@@ -62,6 +62,9 @@ export default function AuthenticatedAdmin({ user, header, children }) {
                         </NavLink>
                         <NavLink href={route('country.index')} active={route().current('country.index')}>
                             Countries
+                        </NavLink>
+                        <NavLink href={route('company.index')} active={route().current('company.index')}>
+                            Companies
                         </NavLink>
                         
                     </div>

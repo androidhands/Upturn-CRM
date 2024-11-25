@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Admin\Country;
 
-use App\Http\Requests\Admin\Company\StoreCountryRequest;
+use App\Http\Requests\Admin\Country\StoreCountryRequest;
 use App\Http\Requests\Admin\Country\UpdateCountryRequest;
 use App\Http\Resources\CountryResource;
 use App\Models\Country;
@@ -24,7 +24,7 @@ class CountryRepository implements CountryRepositoryInterface{
       $name = $country->name;
       $country->delete();
       if($country->flagUrl){
-          Storage::disk('public')->deleteDirectory(dirname($country->image_path));
+          Storage::disk('public')->deleteDirectory(dirname($country->flagUrl));
       }
       return to_route('country.index')->with('success', "Country \"$name\" has been deleted successfully");
 

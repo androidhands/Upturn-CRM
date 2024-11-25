@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Company\StoreCountryRequest;
+use App\Http\Requests\Admin\Country\StoreCountryRequest;
 use App\Http\Requests\Admin\Country\UpdateCountryRequest;
 use App\Models\Country;
-use App\Repositories\Admin\Country\CountryRepository;
+use App\Repositories\Admin\Country\CountryRepositoryInterface;
 
 class CountryController extends Controller
 {
 
     protected $countryRepository;
 
-    public function __construct(CountryRepository $countryRepository)
+    public function __construct(CountryRepositoryInterface $countryRepository)
     {
         $this->countryRepository = $countryRepository;
     }

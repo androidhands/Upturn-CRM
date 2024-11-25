@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Company extends Model
 {
     use HasFactory;
     protected $fillable = ['id','name','industry','type','logoUrl','created_at','updated_at'];
+    public function countries():BelongsToMany
+    {
+        return $this->belongsToMany(Country::class);
+    }
 }

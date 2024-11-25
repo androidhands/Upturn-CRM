@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\Company;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCountryRequest extends FormRequest
+class UpdateCompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,9 @@ class StoreCountryRequest extends FormRequest
     {
         return [
             'name'=>['required','max:225'],
-            'flagUrl'=>['required','image'],
-            'code'=>['required','string'],
-            'phoneCode'=>['required','string'],
+            'logoUrl'=>['nullable','image'],
+            'industry'=>['required','string'],
+            'type'=>['required','string'],
         ];
     }
 }
