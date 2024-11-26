@@ -3,6 +3,7 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import SelectInput from "@/Components/SelectInput";
 import TextInput from "@/Components/TextInput";
+import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
@@ -24,7 +25,7 @@ export default function Edit({ auth, company, baseUrl, countries }) {
       post(route('company.update', company.id));
    }
    return (
-      <AuthenticatedLayout
+      <AuthenticatedAdmin
          user={auth.user}
          header={<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Edit Company "{company.name}"</h2>}>
          <Head title="Edit Company" />
@@ -162,6 +163,6 @@ export default function Edit({ auth, company, baseUrl, countries }) {
 
          </div>
       
-      </AuthenticatedLayout>
+      </AuthenticatedAdmin>
    );
 }

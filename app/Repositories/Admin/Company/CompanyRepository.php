@@ -52,7 +52,8 @@ class CompanyRepository implements CompanyRepositoryInterface{
     * @inheritDoc
     */
    public function index() {
-      $query = Company::query();
+      $query = Company::with('countries');
+    
       $sortField = request('sort_field', 'created_at');
       $sortDirection = request('sort_direction', 'asc');
      if(request("id")){

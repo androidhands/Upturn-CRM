@@ -64,4 +64,12 @@ class User extends Authenticatable
     {
         return [];
     }
+
+
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
 }

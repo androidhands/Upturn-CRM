@@ -13,7 +13,8 @@ const SvgWidget = ({
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={strokeWidth}
-        className={svgClassName}>
+        className={svgClassName}
+      >
         {children}
       </svg>
     </div>

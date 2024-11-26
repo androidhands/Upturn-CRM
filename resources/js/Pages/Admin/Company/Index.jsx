@@ -4,7 +4,9 @@ import Pagination from "@/Components/Pagination";
 import TableHeading from "@/Components/TableHeading";
 import TextInput from "@/Components/TextInput";
 import SuccessMessage from '@/Components/SuccessMessage';
+import AuthenticatedAdmin from '@/Layouts/AuthenticatedAdminLayout';
 export default function Index({ auth, companies, queryParams = null, success, baseUrl }) {
+  
    queryParams = queryParams || {}
    const searchFiledChanged = (name, value) => {
       if (value) {
@@ -41,7 +43,7 @@ export default function Index({ auth, companies, queryParams = null, success, ba
       router.delete(route('company.destroy', company.id));
    }
    return (
-      <AuthenticatedAdminLayout
+      <AuthenticatedAdmin
          user={auth.user}
          header={
             <div className='flex justify-between items-center'>
@@ -75,6 +77,7 @@ export default function Index({ auth, companies, queryParams = null, success, ba
                                     <TextInput className="w-full" defaultValue={queryParams.name} placeholder="Company Name" onKeyPress={(e) => onKeyPress("name", e)} />
                                  </td>
 
+                                 <td className="px-3 py-3"></td>
                                  <td className="px-3 py-3"></td>
                                  <td className="px-3 py-3"></td>
                                  <td className="px-3 py-3"></td>
@@ -115,6 +118,12 @@ export default function Index({ auth, companies, queryParams = null, success, ba
                                     sort_direction={queryParams.sort_direction}
                                     sortChanged={sortChanged}
                                  >Logo</TableHeading>
+                                  <TableHeading
+                                    field={'logoUrl'}
+                                    sort_field={queryParams.sort_field}
+                                    sort_direction={queryParams.sort_direction}
+                                    sortChanged={sortChanged}
+                                 >Countries</TableHeading>
 
                                  <th className="px-3 py-3">Created At</th>
                                  <th className="px-3 py-3">Updated At</th>
@@ -149,8 +158,16 @@ export default function Index({ auth, companies, queryParams = null, success, ba
                                     </td>
 
                                     <td className="px-3 py-2">
-                                       <img src={`${baseUrl}/storage/${company.logoUrl}`} alt="" style={{ width: 20 }} />
-
+                                       <img src={`${baseUrl}/storage/${company.logoUrl}`} alt="" style={{ width: 40, height:40 }} />
+                                    </td>
+                                    <td className="flex overflow px-3 py-2">
+                                       {company.countries.map((country) => (
+                                          <div className="center"
+                                             key={country.id}>
+                                      <img  src={`${baseUrl}/storage/${country.flagUrl}`} alt="" style={{ width: 40,height: 30, padding:5}} />
+                                          </div>
+                                       ))}
+                                      
                                     </td>
                                     <td className="px-3 py-2 text-npwrap">
                                        {company.created_at}
@@ -182,6 +199,6 @@ export default function Index({ auth, companies, queryParams = null, success, ba
                </div>
             </div>
          </div>
-      </AuthenticatedAdminLayout>
+      </AuthenticatedAdmin>
    );
 }

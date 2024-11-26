@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -40,6 +41,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function(){
     })->name('admin_dashboard');
     Route::resource('country',CountryController::class);
     Route::resource('company',CompanyController::class);
+     // Nested user routes under company
+    Route::prefix('company/{company}')->group(function () {
+        Route::resource('user', UserController::class);
+    });
+   
 
 
 });

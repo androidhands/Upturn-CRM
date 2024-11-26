@@ -1,15 +1,24 @@
-import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
+import NavLink from "@/Components/NavLink";
+import SvgBusinessUnit from "@/Components/SvgIcons/BusinessUnit";
+import SvgDistrict from "@/Components/SvgIcons/District";
+import SvgLines from "@/Components/SvgIcons/Lines";
+import SvgOffice from "@/Components/SvgIcons/Office";
+import SvgProduct from "@/Components/SvgIcons/Product";
+import SvgRegion from "@/Components/SvgIcons/Region";
+import SvgStructure from "@/Components/SvgIcons/Structure";
+import SvgTerritory from "@/Components/SvgIcons/Territory";
+import SvgUser from "@/Components/SvgIcons/User";
+import SvgWidget from "@/Components/SvgWidget";
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router } from "@inertiajs/react";
 
 
 export default function Show({ auth, company, baseUrl }) {
-  
+
    return (
       <AuthenticatedAdmin
-         
+
          user={auth.user}
          header={<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">{`Company ${company.name}`}</h2>}>
          <Head title={`Company ${company.name}`} />
@@ -18,7 +27,7 @@ export default function Show({ auth, company, baseUrl }) {
                <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
                   <div>
-                     <img src={`${baseUrl}/storage/${company.logoUrl}`} alt="" className="w-64 h-64 object-fill" />
+                     <img src={`${baseUrl}/storage/${company.logoUrl}`} alt="" className="w-full h-64 object-fill" />
                   </div>
                   <div className="p-6 text-gray-900 dark:text-gray-100">
 
@@ -83,6 +92,126 @@ export default function Show({ auth, company, baseUrl }) {
                      </div>
                   </div>
                </div>
+
+
+            </div>
+
+         </div>
+         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
+            <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+               <div className="mb-4 mt-4 items-center">
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgUser className="w-7 h-7 stroke-green-500" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Users
+                        </h4>
+
+                     </div>
+                  </NavLink>
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgRegion className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Regions
+                        </h4>
+
+                     </div>
+                  </NavLink>
+
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgBusinessUnit className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Business Units
+                        </h4>
+
+                     </div>
+                  </NavLink>
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgLines className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Lines
+                        </h4>
+
+                     </div>
+                  </NavLink>
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgDistrict className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Districts
+                        </h4>
+
+                     </div>
+                  </NavLink>
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgTerritory className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Territories
+                        </h4>
+
+                     </div>
+                  </NavLink>
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgProduct className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Products
+                        </h4>
+
+                     </div>
+                  </NavLink>
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                     <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgStructure className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Structure
+                        </h4>
+
+                     </div>
+                  </NavLink>
+                  <NavLink href={route(`user.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                     <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgOffice className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Offices
+                        </h4>
+
+                     </div>
+                  </NavLink>
+
+               </div>
+
             </div>
          </div>
 
