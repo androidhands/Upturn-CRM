@@ -8,7 +8,7 @@ import SuccessMessage from "@/Components/SuccessMessage";
 import PageHeader from "@/Components/PageHeader";
 
 
-export default function Index({ auth, regions, queryParams = null, success ,company}) {
+export default function Index({ auth, districts, queryParams = null, success ,company}) {
    queryParams = queryParams || {}
    const searchFiledChanged = (name, value) => {
       if (value) {
@@ -16,7 +16,7 @@ export default function Index({ auth, regions, queryParams = null, success ,comp
       } else {
          delete queryParams[name];
       }
-      router.get(route(`region.index`, [company.id,queryParams]));
+      router.get(route(`district.index`, [company.id,queryParams]));
    }
 
    const onKeyPress = (name, e) => {
@@ -35,18 +35,18 @@ export default function Index({ auth, regions, queryParams = null, success ,comp
          queryParams.sort_field = name;
          queryParams.sort_direction = 'asc';
       }
-      router.get(route(`region.index`, [company.id, queryParams]));
+      router.get(route(`district.index`, [company.id, queryParams]));
    }
 
-   const deleteBusinessUnit = (region) => {
-      if (!window.confirm('Are you sure to delete the region?')) {
+   const deleteBusinessUnit = (district) => {
+      if (!window.confirm('Are you sure to delete the district?')) {
          return;
       }
-      router.delete(route(`region.destroy`,[company.id,region.id]));
+      router.delete(route(`district.destroy`,[company.id,district.id]));
    }
    const breadcrumbs = [
       { name: company.name, href: route('company.show', company.id) },
-      { name: 'Regions', href: route('region.index', company.id) },
+      { name: 'Districts', href: route('district.index', company.id) },
      
     ];
    return (
@@ -56,12 +56,12 @@ export default function Index({ auth, regions, queryParams = null, success ,comp
             <div className="flex justify-between items-center">
                <PageHeader breadcrumbs={breadcrumbs}/>
                <Link className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600"
-                  href={route(`region.create`,company.id)}>Add New</Link>
+                  href={route(`district.create`,company.id)}>Add New</Link>
             </div>
          }>
 
 
-         <Head title="Regions" />
+         <Head title="Districts" />
 
 
 
@@ -114,27 +114,27 @@ export default function Index({ auth, regions, queryParams = null, success ,comp
                            </thead>
 
                            <tbody>
-                              {regions.data.map(region => (
-                                 <tr key={region.id}
+                              {districts.data.map(district => (
+                                 <tr key={district.id}
                                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th className="px-3 py-2">
-                                       {region.id}
+                                       {district.id}
                                     </th>
                                     <th className="px-3 py-2 text-white text-nowrap">
-                                       <Link href={route(`region.show`,[ company.id,region.id])}>
-                                       {region.name}
+                                       <Link href={route(`district.show`,[ company.id,district.id])}>
+                                       {district.name}
                                        </Link>
                                     </th>
                                   
                                     <td className="px-3 py-2">
-                                       {region.created_at}
+                                       {district.created_at}
                                     </td>
                                    
                                     <td className="px-3 py-2 text-nowrap">
-                                       <Link href={route(`region.edit`, [company.id,region.id])} className="text-blue-600 dark:text-blue-500 hover:underline mx-1">
+                                       <Link href={route(`district.edit`, [company.id,district.id])} className="text-blue-600 dark:text-blue-500 hover:underline mx-1">
                                           Edit
                                        </Link>
-                                       <button onClick={e => deleteBusinessUnit(region)} className="text-red-600 dark:text-red-500 hover:underline mx-1">
+                                       <button onClick={e => deleteBusinessUnit(district)} className="text-red-600 dark:text-red-500 hover:underline mx-1">
                                           Delete
                                        </button>
                                     </td>
@@ -143,7 +143,7 @@ export default function Index({ auth, regions, queryParams = null, success ,comp
                            </tbody>
                         </table>
                      </div>
-                     <Pagination links={regions.meta.links} />
+                     <Pagination links={districts.meta.links} />
                   </div>
                </div>
             </div>

@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
             'Role',
             'BusinessUnit',
             'Region',
+            'District',
         ];
     
         foreach ($repositories as $repository) {

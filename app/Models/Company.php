@@ -40,4 +40,9 @@ class Company extends Model
     {
         return $this->hasMany(Region::class);
     }
+
+    public function districts():HasMany
+    {
+        return $this->hasMany(District::class);
+    }
 }
