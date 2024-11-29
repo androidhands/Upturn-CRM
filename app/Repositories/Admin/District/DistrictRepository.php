@@ -96,12 +96,6 @@ class DistrictRepository implements DistrictRepositoryInterface
     public function update(UpdateDistrictRequest $request, string $companyId, string $districtId)
     {
         $data = $request->validated();
-        $password = $data['password'] ?? null;
-        if ($password) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
-            unset($data['password']);
-        }
         $company = Company::find($companyId);
         $district = District::find($districtId);
         $district->update($data);

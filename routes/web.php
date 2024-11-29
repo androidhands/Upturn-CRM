@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TerritoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function(){
         Route::resource('businessUnit', BusinessUnitController::class);
         Route::resource('region', RegionController::class);
         Route::resource('district', DistrictController::class);
+        Route::resource('territory', TerritoryController::class);
     });
     
    

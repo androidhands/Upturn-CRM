@@ -23,7 +23,7 @@ class CompanyResource extends JsonResource
             'industry'=>$this->industry,
             'type'=>$this->type,
             'logoUrl'=>$this->logoUrl,
-           'countries' => CountryResource::collection($this->whenLoaded('countries')),
+            'countries' => CountryResource::collection($this->whenLoaded('countries')),
             'created_at'=>(new Carbon($this->created_at))->format('Y-m-d'),
             'updated_at'=>(new Carbon($this->updated_at))->format('Y-m-d'),
         ];
