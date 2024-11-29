@@ -20,4 +20,24 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function roles():HasMany
+    {
+        return $this->hasMany(Role::class);
+    }
+    
+    public function products():HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function businessUnits():HasMany
+    {
+        return $this->hasMany(BusinessUnit::class);
+    }
+
+    public function regions():HasMany
+    {
+        return $this->hasMany(Region::class);
+    }
 }

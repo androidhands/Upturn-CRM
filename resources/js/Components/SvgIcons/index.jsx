@@ -4,6 +4,7 @@ export { default as Lines } from "./Lines";
 export { default as Office } from "./Office";
 export { default as Product } from "./Product";
 export { default as Region } from "./Region";
+export { default as Role } from "./Role";
 export { default as Structure } from "./Structure";
 export { default as Territory } from "./Territory";
 export { default as User } from "./User";

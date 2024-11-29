@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Admin\User;
 
 use App\Http\Requests\Admin\User\StoreUserRequest;
@@ -8,106 +9,116 @@ use App\Http\Resources\UserResource;
 use App\Models\Company;
 use App\Models\User;
 
-class UserRepository implements UserRepositoryInterface{
-   
-   /**
+class UserRepository implements UserRepositoryInterface
+{
+
+    /**
      * Display a listing of the resource.
      */
-    public function index(Company $company)
+    public function index(string $companyId)
     {
-
+        $company = Company::find($companyId);
         $query = $company->users();
         $sortField = request('sort_field', 'created_at');
         $sortDirection = request('sort_direction', 'desc');
-       if(request("id")){
+        if (request("id")) {
             $query->where("id", "like", request("id"));
-       }
+        }
 
-        if(request("name")){
-            $query->where("name", "like", "%" . request("name") . "%", );
+        if (request("name")) {
+            $query->where("name", "like", "%" . request("name") . "%",);
         }
-        if(request("email")){
-            $query->where("email", "like", "%" . request("email") . "%", );
+        if (request("email")) {
+            $query->where("email", "like", "%" . request("email") . "%",);
         }
-       $projects =  $query->orderBy($sortField,$sortDirection)->paginate(10);
-      
-        return  inertia('Admin/User/Index',[
-            "users"=> UserResource::collection($projects),
+        $users =  $query->orderBy($sortField, $sortDirection)->paginate(10);
+
+        return  inertia('Admin/User/Index', [
+            "users" => UserResource::collection($users),
             'queryParams' => request()->query() ?: null,
-            'success'=>session('success'),
-            'company'=>new CompanyResource($company)
+            'success' => session('success'),
+            'company' => new CompanyResource($company)
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Company $company)
+    public function create(string $companyId)
     {
-        return inertia("Admin/User/Create",[
-            'company'=>new CompanyResource($company),   
+        $company = Company::find($companyId);
+        return inertia("Admin/User/Create", [
+            'company' => new CompanyResource($company),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request, Company $company)
+    public function store(StoreUserRequest $request, string $companyId)
     {
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
-      $user =   User::create($data);
-      $user->company()->associate($company);
-      $user->save();
-      return  to_route('user.index',$company)->with('success','User created successfully');
+        $user =   User::create($data);
+        $company = Company::find($companyId);
+        $user->company()->associate($company);
+        $user->save();
+        return  to_route('user.index', $company)->with('success', 'User created successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Company $company,User $user)
+    public function show(string $companyId, string $userId)
     {
-      return inertia("Admin/User/Show",[
-         "user"=>new UserResource( $user),
-         "compnay"=> new CompanyResource($company )  
-      ]);
+        $user = User::find($userId);
+        $company = Company::find($companyId);
+        return inertia("Admin/User/Show", [
+            "user" => new UserResource($user),
+            "company" => new CompanyResource($company)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company,User $user)
+    public function edit(string $companyId, string $userId)
     {
+        $user = User::find($userId);
+        $company = Company::find($companyId);
         return inertia('Admin/User/Edit', [
-            'user'=>new UserResource($user),
-            'company'=> new CompanyResource($company)
+            'user' => new UserResource($user),
+            'company' => new CompanyResource($company)
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request,Company $company, User $user)
+    public function update(UpdateUserRequest $request, string $companyId, string $userId)
     {
         $data = $request->validated();
         $password = $data['password'] ?? null;
-        if($password){
+        if ($password) {
             $data['password'] = bcrypt($data['password']);
-        }else{
+        } else {
             unset($data['password']);
         }
-       
+        $user = User::find($userId);
+        $company = Company::find($companyId);
         $user->update($data);
-      return  to_route('user.index',$company)->with('success',"User \"$user->name\" updated successfully");
+        return  to_route('user.index', $company)->with('success', "User \"$user->name\" updated successfully");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company, User $user)
+    public function destroy(string $companyId, string $userId)
     {
+        $user = User::find($userId);
+        $company = Company::find($companyId);
         $name = $user->name;
         $user->delete();
-        return to_route('user.index',$company)->with('success', "User \"$name\" has been deleted successfully");
+        return to_route('user.index', $company)->with('success', "User \"$name\" has been deleted successfully");
     }
 }

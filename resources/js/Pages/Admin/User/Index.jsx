@@ -6,7 +6,6 @@ import Pagination from "@/Components/Pagination";
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout";
 import SuccessMessage from "@/Components/SuccessMessage";
 
-
 export default function Index({ auth, users, queryParams = null, success ,company}) {
    queryParams = queryParams || {}
    const searchFiledChanged = (name, value) => {

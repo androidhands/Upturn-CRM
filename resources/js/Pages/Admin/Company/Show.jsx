@@ -6,12 +6,13 @@ import SvgLines from "@/Components/SvgIcons/Lines";
 import SvgOffice from "@/Components/SvgIcons/Office";
 import SvgProduct from "@/Components/SvgIcons/Product";
 import SvgRegion from "@/Components/SvgIcons/Region";
+import SvgRole from "@/Components/SvgIcons/Role";
 import SvgStructure from "@/Components/SvgIcons/Structure";
 import SvgTerritory from "@/Components/SvgIcons/Territory";
 import SvgUser from "@/Components/SvgIcons/User";
 import SvgWidget from "@/Components/SvgWidget";
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout";
-import { Head, router } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 
 
 export default function Show({ auth, company, baseUrl }) {
@@ -112,7 +113,7 @@ export default function Show({ auth, company, baseUrl }) {
 
                      </div>
                   </NavLink>
-                  <NavLink href={route(`user.index`, company.id)}
+                  <NavLink href={route(`region.index`, company.id)}
                   >
                      <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
                         <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
@@ -125,7 +126,7 @@ export default function Show({ auth, company, baseUrl }) {
                      </div>
                   </NavLink>
 
-                  <NavLink href={route(`user.index`, company.id)}
+                  <NavLink href={route(`businessUnit.index`, company.id)}
                   >
                      <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
                         <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
@@ -173,7 +174,7 @@ export default function Show({ auth, company, baseUrl }) {
 
                      </div>
                   </NavLink>
-                  <NavLink href={route(`user.index`, company.id)}
+                  <NavLink href={route(`product.index`, company.id)}
                   >
                      <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
                         <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
@@ -209,10 +210,25 @@ export default function Show({ auth, company, baseUrl }) {
 
                      </div>
                   </NavLink>
+                  <NavLink href={route(`role.index`, company.id)}
+                  >
+                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
+                     <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
+                           <SvgRole className="w-7 h-7 stroke-green-500" color="green" />
+                        </div>
+                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
+                           Roles
+                        </h4>
+
+                     </div>
+                  </NavLink>
 
                </div>
-
+              
             </div>
+            <div className="mt-4 text-right">
+                           <Link href={route('company.index')} className="inline-block bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all horver:bg-gray-200 mr-2">Cancel</Link>
+                        </div>
          </div>
 
       </AuthenticatedAdmin>

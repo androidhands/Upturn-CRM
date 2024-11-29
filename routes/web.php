@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BusinessUnitController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RegionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +48,12 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function(){
      // Nested user routes under company
     Route::prefix('company/{company}')->group(function () {
         Route::resource('user', UserController::class);
+        Route::resource('product', ProductController::class);
+        Route::resource('role', RoleController::class);
+        Route::resource('businessUnit', BusinessUnitController::class);
+        Route::resource('region', RegionController::class);
     });
+    
    
 
 

@@ -13,62 +13,63 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     protected $userRepositoryInterface;
-    public function __construct(UserRepositoryInterface $userRepositoryInterface){
+    public function __construct(UserRepositoryInterface $userRepositoryInterface)
+    {
         $this->userRepositoryInterface = $userRepositoryInterface;
     }
     /**
      * Display a listing of the resource.
      */
-    public function index(Company $company)
+    public function index(string $companyId)
     {
-        return $this->userRepositoryInterface->index($company);
+        return $this->userRepositoryInterface->index($companyId);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Company $company)
+    public function create(string $companyId)
     {
-        return $this->userRepositoryInterface->create($company);
+        return $this->userRepositoryInterface->create($companyId);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request, Company $company)
+    public function store(StoreUserRequest $request, string $companyId)
     {
-        return $this->userRepositoryInterface->store($request,$company);
+        return $this->userRepositoryInterface->store($request, $companyId);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Company $company,User $user)
+    public function show(string $companyId, string $userId)
     {
-        return $this->userRepositoryInterface->show($company,$user);
+        return $this->userRepositoryInterface->show($companyId, $userId);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company,User $user)
+    public function edit(string $companyId, string $userId)
     {
-        return $this->userRepositoryInterface->edit($company,$user); 
+        return $this->userRepositoryInterface->edit($companyId, $userId);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request,Company $company, User  $user)
+    public function update(UpdateUserRequest $request, string $companyId, string  $userId)
     {
-        return $this->userRepositoryInterface->update($request,$company, $user);
+        return $this->userRepositoryInterface->update($request, $companyId, $userId);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company, User $user)
+    public function destroy(string $companyId, string $userId)
     {
-        return $this->userRepositoryInterface->destroy($company,$user);  
+        return $this->userRepositoryInterface->destroy($companyId, $userId);
     }
 }
