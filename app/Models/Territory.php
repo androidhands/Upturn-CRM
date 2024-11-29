@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class District extends Model
+class Territory extends Model
 {
-   
     use HasFactory;
     protected $fillable = ['id','company_id','name','created_at','updated_at'];
 

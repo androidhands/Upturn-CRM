@@ -45,4 +45,9 @@ class Company extends Model
     {
         return $this->hasMany(District::class);
     }
+
+    public function territories():HasMany
+    {
+        return $this->hasMany(Territory::class);
+    }
 }
