@@ -7,20 +7,20 @@ import TextInput from "@/Components/TextInput";
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Edit({ auth, region,company }) {
+export default function Edit({ auth, district,company }) {
    const { data, setData, put, processing, errors, reset } = useForm({
-      name: region.name || "",
+      name: district.name || "",
 
    });
    const onSubmit = (e) => {
       e.preventDefault();
 
-      put(route('region.update',[company.id, region.id]));
+      put(route('district.update',[company.id, district.id]));
    }
    const breadcrumbs = [
       { name: company.name, href: route('company.show', company.id) },
-      { name: 'Regions', href: route('region.index', company.id) },
-      { name: `Edit ${region.name}`, href: route('region.edit', [company.id, region.id]) },
+      { name: 'Districts', href: route('district.index', company.id) },
+      { name: `Edit ${district.name}`, href: route('district.edit', [company.id, district.id]) },
 
    ];
    return (
@@ -29,7 +29,7 @@ export default function Edit({ auth, region,company }) {
          header={
             <PageHeader breadcrumbs={breadcrumbs}/>
          }>
-         <Head title="Edit Region" />
+         <Head title="Edit District" />
 
          <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -42,11 +42,11 @@ export default function Edit({ auth, region,company }) {
 
                      <div className="mt-4">
                         <InputLabel
-                           htmlFor="region_name"
-                           value="Region Name"
+                           htmlFor="district_name"
+                           value="District Name"
                         />
                         <TextInput
-                           id="region_name"
+                           id="district_name"
                            type="text"
                            name="name"
                            value={data.name}
@@ -58,7 +58,7 @@ export default function Edit({ auth, region,company }) {
                      </div>
 
                      <div className="mt-4 text-right">
-                        <Link href={route('region.index',company.id)} className="inline-block bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all horver:bg-gray-200 mr-2">Cancel</Link>
+                        <Link href={route('district.index',company.id)} className="inline-block bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all horver:bg-gray-200 mr-2">Cancel</Link>
 
                         <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600" >Submit</button>
 

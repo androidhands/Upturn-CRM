@@ -13,11 +13,11 @@ export default function Create({ auth, company }) {
    const onSubmit = (e) => {
       e.preventDefault();
 
-      post(route("region.store",company.id));
+      post(route("district.store",company.id));
    }
    const breadcrumbs = [
       { name: company.name, href: route('company.show', company.id) },
-      { name: 'Create New Region', href: route('region.create', company.id) },
+      { name: 'Create New District', href: route('district.create', company.id) },
       
 
    ];
@@ -27,7 +27,7 @@ export default function Create({ auth, company }) {
          header={
             <PageHeader breadcrumbs={breadcrumbs}/>
          }>
-         <Head title="Create New Region" />
+         <Head title="Create New District" />
 
          <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -38,11 +38,11 @@ export default function Create({ auth, company }) {
                      onSubmit={onSubmit}>
                      <div className="mt-4">
                         <InputLabel
-                           htmlFor="region_name"
-                           value="Region Name"
+                           htmlFor="district_name"
+                           value="District Name"
                         />
                         <TextInput
-                           id="region_name"
+                           id="district_name"
                            type="text"
                            name="name"
                            value={data.name}
@@ -54,7 +54,7 @@ export default function Create({ auth, company }) {
                      </div>
                    
                      <div className="mt-4 text-right">
-                        <Link href={route('region.index',company.id)} className="inline-block bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all horver:bg-gray-200 mr-2">Cancel</Link>
+                        <Link href={route('district.index',company.id)} className="inline-block bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all horver:bg-gray-200 mr-2">Cancel</Link>
                         <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600" >Submit</button>
 
                      </div>

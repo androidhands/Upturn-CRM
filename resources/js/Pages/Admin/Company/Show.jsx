@@ -150,7 +150,7 @@ export default function Show({ auth, company, baseUrl }) {
 
                      </div>
                   </NavLink>
-                  <NavLink href={route(`user.index`, company.id)}
+                  <NavLink href={route(`district.index`, company.id)}
                   >
                      <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
                         <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
