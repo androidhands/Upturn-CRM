@@ -50,4 +50,9 @@ class Company extends Model
     {
         return $this->hasMany(Territory::class);
     }
+
+    public function lines():HasMany
+    {
+        return $this->hasMany(Line::class);
+    }
 }
