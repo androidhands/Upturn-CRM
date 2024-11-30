@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\LineController;
+use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\Admin\ProductController;
@@ -58,6 +59,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function(){
         Route::resource('district', DistrictController::class);
         Route::resource('territory', TerritoryController::class);
         Route::resource('line', LineController::class);
+        Route::resource('office', OfficeController::class);
     });
     
    

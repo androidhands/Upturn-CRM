@@ -55,4 +55,9 @@ class Company extends Model
     {
         return $this->hasMany(Line::class);
     }
+
+    public function offices():HasMany
+    {
+        return $this->hasMany(Office::class);
+    }
 }
