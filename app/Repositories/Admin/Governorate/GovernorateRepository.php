@@ -70,8 +70,8 @@ class GovernorateRepository implements GovernorateRepositoryInterface
     public function show(string $countryId, string $governorateId)
     {
         $country = Country::find($countryId);
-        $governorate = Governorate::find($governorateId);
-        return inertia("Admin/Governorate/Show", [
+        $governorate = Governorate::find( $governorateId);
+        return inertia("Admin/Governorate/Show", props: [
             "governorate" => new GovernorateResource($governorate),
             "country" => new CountryResource($country)
         ]);
