@@ -38,8 +38,8 @@ class SeederCommand extends Command
             Artisan::call(
                 'db:seed',
                 [
-                    '--class' => $class,
-                    '--database' => 'tenant'
+                    '--class' => "Database\\Seeders\\Tenants\\$class",
+                    '--database' => 'tenant',
                 ]
             );
             $this->info(Artisan::output());

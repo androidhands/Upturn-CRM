@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
             'Territory',
             'Line',
             'Office',
+            'Governorate',
         ];
     
         foreach ($repositories as $repository) {

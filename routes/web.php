@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BusinessUnitController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\GovernorateController;
 use App\Http\Controllers\Admin\LineController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\UserController;
@@ -48,6 +49,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function(){
         return Inertia::render('AdminDashboard');
     })->name('admin_dashboard');
     Route::resource('country',CountryController::class);
+    Route::prefix('country/{country}')->group(function () {
+        Route::resource('governorate', GovernorateController::class);
+    });
     Route::resource('company',CompanyController::class);
      // Nested user routes under company
     Route::prefix('company/{company}')->group(function () {
