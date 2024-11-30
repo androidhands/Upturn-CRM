@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BusinessUnitController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DistrictController;
@@ -40,20 +41,23 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified','role:client'])->name('dashboard');
+})->middleware(['auth', 'verified', 'role:client'])->name('dashboard');
 
 
 
-Route::middleware(['auth', 'verified', 'role:admin'])->group(function(){
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin_dashboard', function () {
         return Inertia::render('AdminDashboard');
     })->name('admin_dashboard');
-    Route::resource('country',CountryController::class);
+    Route::resource('country', CountryController::class);
     Route::prefix('country/{country}')->group(function () {
         Route::resource('governorate', GovernorateController::class);
+        Route::prefix('governorate/{governorate}')->group(function () {
+            Route::resource('city', CityController::class);
+        });
     });
-    Route::resource('company',CompanyController::class);
-     // Nested user routes under company
+    Route::resource('company', CompanyController::class);
+    // Nested user routes under company
     Route::prefix('company/{company}')->group(function () {
         Route::resource('user', UserController::class);
         Route::resource('product', ProductController::class);
@@ -65,10 +69,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function(){
         Route::resource('line', LineController::class);
         Route::resource('office', OfficeController::class);
     });
-    
-   
-
-
 });
 // client profile
 Route::middleware('auth')->group(function () {
@@ -86,4 +86,4 @@ Route::middleware('auth')->group(function () {
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

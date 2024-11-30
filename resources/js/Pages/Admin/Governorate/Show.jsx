@@ -59,7 +59,7 @@ export default function Show({ auth, governorate, country }) {
          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
             <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                <div className="mb-4 mt-4 items-center">
-               <NavLink href={route(`city.index`, governorate.id)}
+               <NavLink href={route(`city.index`,[country.id, governorate.id])}
                   >
                      <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
                         <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">

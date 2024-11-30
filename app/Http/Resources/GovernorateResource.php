@@ -20,7 +20,7 @@ class GovernorateResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'company_id' => $this->company_id,
+            'country_id' => $this->country_id,
             'name' => $this->name,
             'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
             'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d'),
