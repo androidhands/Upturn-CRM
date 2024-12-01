@@ -1,3 +1,4 @@
+import CompanySetup from "@/Components/CompanySetup";
 import InputLabel from "@/Components/InputLabel";
 import NavLink from "@/Components/NavLink";
 import SvgBusinessUnit from "@/Components/SvgIcons/BusinessUnit";
@@ -98,137 +99,116 @@ export default function Show({ auth, company, baseUrl }) {
             </div>
 
          </div>
+
          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
             <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-               <div className="mb-4 mt-4 items-center">
-                  <NavLink href={route(`user.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgUser className="w-7 h-7 stroke-green-500" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Users
-                        </h4>
+               <div className="mb-4 mt-4 items-center px-6">
+                  <div className="grid grid-cols-1 md:grid-cols-1 gap-6 lg:gap-8">
+                     <CompanySetup
+                        title={"Business Units"}
+                        svgImage={<SvgBusinessUnit className="w-7 h-7 stroke-green-500" color="green" />}
+                        target={route(`businessUnit.index`, company.id)}
+                        description={
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`region.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgRegion className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Regions
-                        </h4>
+                     />
+                      <CompanySetup
+                        title={"Lines"}
+                        svgImage={<SvgLines className="w-7 h-7 stroke-green-500" />}
+                        target={route(`line.index`, company.id)}
+                        description={
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
+                     />
+                      <CompanySetup
+                        title={"Products"}
+                        svgImage={<SvgProduct className="w-7 h-7 stroke-green-500" />}
+                        target={route(`product.index`, company.id)}
+                        description={
 
-                  <NavLink href={route(`businessUnit.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgBusinessUnit className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Business Units
-                        </h4>
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`line.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgLines className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Lines
-                        </h4>
+                     />
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`district.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgDistrict className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Districts
-                        </h4>
+                       <CompanySetup
+                        title={"Regions"}
+                        svgImage={<SvgRegion className="w-7 h-7 stroke-green-500"  color="green"  />}
+                        target={route(`region.index`, company.id)}
+                        description={
+                           
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`territory.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgTerritory className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Territories
-                        </h4>
+                     />
+                     <CompanySetup
+                        title={"Districts"}
+                        svgImage={<SvgDistrict className="w-7 h-7 stroke-green-500"  color="green"  />}
+                        target={route(`district.index`, company.id)}
+                        description={
+                           
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`product.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                        <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgProduct className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Products
-                        </h4>
+                     />
+                     <CompanySetup
+                        title={"Territories"}
+                        svgImage={<SvgTerritory className="w-7 h-7 stroke-green-500"  color="green"  />}
+                        target={route(`territory.index`, company.id)}
+                        description={
+                           
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`user.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                     <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgStructure className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Structure
-                        </h4>
+                     />
+                       <CompanySetup
+                        title={"Offices"}
+                        svgImage={<SvgOffice className="w-7 h-7 stroke-green-500" />}
+                        target={route(`office.index`, company.id)}
+                        description={
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`office.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                     <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgOffice className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Offices
-                        </h4>
+                     />
+                       <CompanySetup
+                        title={"Roles"}
+                        svgImage={<SvgRole className="w-7 h-7 stroke-green-500" />}
+                        target={route(`role.index`, company.id)}
+                        description={
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
-                  <NavLink href={route(`role.index`, company.id)}
-                  >
-                     <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-green-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" >
-                     <div className="h-16 w-16 bg-green-50 dark:bg-green-800/20 flex items-center justify-center rounded-full">
-                           <SvgRole className="w-7 h-7 stroke-green-500" color="green" />
-                        </div>
-                        <h4 className="mt-6 ml-2 text-s font-semibold text-gray-900 dark:text-white">
-                           Roles
-                        </h4>
+                     />
+                     <CompanySetup
+                        title={"Users"}
+                        svgImage={<SvgUser className="w-7 h-7 stroke-green-500" />}
+                        target={route(`user.index`, company.id)}
+                        description={
+                           ` Laravel has wonderful documentation covering `
+                        }
 
-                     </div>
-                  </NavLink>
+                     />
+                       <CompanySetup
+                        title={"Structure"}
+                        svgImage={<SvgStructure className="w-7 h-7 stroke-green-500" />}
+                        target={route(`user.index`, company.id)}
+                        description={
+                           ` Laravel has wonderful documentation covering `
+                        }
+
+                     />
+                   
+                  </div>
+                 
 
                </div>
-              
+
             </div>
             <div className="mt-4 text-right">
-                           <Link href={route('company.index')} className="inline-block bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all horver:bg-gray-200 mr-2">Cancel</Link>
-                        </div>
+               <Link href={route('company.index')} className="inline-block bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all horver:bg-gray-200 mr-2">Cancel</Link>
+            </div>
          </div>
 
       </AuthenticatedAdmin>
