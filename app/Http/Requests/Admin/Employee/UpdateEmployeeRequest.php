@@ -35,7 +35,8 @@ class UpdateEmployeeRequest extends FormRequest
             'marital_status' => ['required', 'string', 'max:50'],
             'hiring_date' => ['required', 'date'],
             'termination_date' => ['nullable', 'date'],
-            'is_active' => ['required', 'boolean']
+            'is_active' => ['required', 'boolean'],
+            'image_url' => ['nullable', 'image'],
 
         ];
     }

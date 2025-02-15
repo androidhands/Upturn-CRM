@@ -36,19 +36,19 @@ export default function Create({ auth, countries }) {
                   <form className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
                      onSubmit={onSubmit} >
 
-                    
+
 
                      <div>
                      <InputLabel
                            htmlFor="countries_select"
                            value="Select Countries"
                         />
-                       
+
                         <div id="countries_select" className="mt-2">
                            {countries.data.map((country) => (
                               <div key={`country_${country.id}`} className="flex items-center mb-2">
                                  <Checkbox
-                                 
+
                                     id={`country_${country.id}`}
                                     name="countries"
                                     value={country.id}

@@ -33,6 +33,7 @@ class EmployeeResource extends JsonResource
             'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
             'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d'),
             'is_active' => $this->is_active,
+            'image_url' => $this->image_url,
             'role' => new RoleResource($this->whenLoaded('role')),
             'department' => new DepartmentResource($this->whenLoaded('departments'))
         ];

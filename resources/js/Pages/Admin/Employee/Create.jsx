@@ -24,11 +24,16 @@ export default function Create({ auth, user, company, roles, departments }) {
         military_status: "",
         marital_tatus: "",
         hiring_date: "",
-        is_active: true,
+        is_active: Boolean(user.employee.is_active),
+        image_url: "",
+         _method:'PUT'
     });
 
-    const handleChange = (checked) => {
-        data.is_active = checked;
+    const handleSwitchChange = (name, value) => {
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
     const onSubmit = (e) => {
         e.preventDefault();
@@ -99,10 +104,33 @@ export default function Create({ auth, user, company, roles, departments }) {
                                 </div>
                                 <form onSubmit={onSubmit}>
                                     <div className="mt-4">
+                                        <InputLabel
+                                            htmlFor="image_path"
+                                            value="Profile Image"
+                                        />
+                                        <TextInput
+                                            id="image_path"
+                                            type="file"
+                                            name="image"
+                                            className="mt-1 block w-full"
+                                            onChange={(e) =>
+                                                setData(
+                                                    "image_url",
+                                                    e.target.files[0]
+                                                )
+                                            }
+                                        />
+                                        <InputError
+                                            message={errors.image_url}
+                                            className="mt-2 "
+                                        />
+                                    </div>
+                                    <div className="mt-4">
                                         <ToggleSwitch
-                                            label={"Active Status"}
-                                            initialState={true}
-                                            onChange={handleChange}
+                                            label="Active Status"
+                                            name="is_active"
+                                            value={data.is_active}
+                                            onChange={handleSwitchChange}
                                         ></ToggleSwitch>
                                     </div>
                                     <div className="mt-4">

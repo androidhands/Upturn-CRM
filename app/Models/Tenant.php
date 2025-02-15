@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Tenant extends Model
 {
     use HasFactory;
+    protected $connection = 'system'; // Explicitly set to system database
 }
