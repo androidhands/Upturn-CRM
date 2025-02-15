@@ -39,15 +39,15 @@ class AppServiceProvider extends ServiceProvider
             'Office',
             'Governorate',
             'City',
-            'Employee'
+            'Employee',
+            'Department'
         ];
-    
+
         foreach ($repositories as $repository) {
             $interface = "App\\Repositories\\Admin\\{$repository}\\{$repository}RepositoryInterface";
             $implementation = "App\\Repositories\\Admin\\{$repository}\\{$repository}Repository";
             $this->app->bind($interface, $implementation);
         }
-    
     }
 
     /**

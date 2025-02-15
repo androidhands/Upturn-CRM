@@ -27,6 +27,7 @@ class UpdateEmployeeRequest extends FormRequest
 
             'role_id' => ['required'],
             'date_of_birth' => ['required', 'date'],
+            'department_id' => ['required'],
             'gender' => ['required', 'integer', 'max:2'],
             'education_degree' => ['required', 'string', 'max:150'],
             'graduation_year' => ['required', 'integer'],
@@ -34,6 +35,7 @@ class UpdateEmployeeRequest extends FormRequest
             'marital_status' => ['required', 'string', 'max:50'],
             'hiring_date' => ['required', 'date'],
             'termination_date' => ['nullable', 'date'],
+            'is_active' => ['required', 'boolean']
 
         ];
     }
