@@ -12,6 +12,8 @@ use App\Http\Resources\UserResource;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
@@ -71,6 +73,12 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     public function store(StoreEmployeeRequest $request, string $companyId, string $userId)
     {
         $data = $request->validated();
+        /** * @var $image \Illuminate\Http\UploadededFile*/
+        $image = $data['image_url'] ?? null;
+        if ($image) {
+            $path = $image->store('Profile/' . Str::random(), 'public');
+            $data['image_url'] =   $path;
+        }
         $user = User::find($userId);
         $company = Company::find($companyId);
         $employee = Employee::create($data);
@@ -95,6 +103,17 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $company->load('roles');
         $user = User::find($userId);
         $employee = Employee::find($user->employee->id);
+        /** * @var $image \Illuminate\Http\UploadededFile*/
+        $image = $data['image_url'] ?? null;
+
+        if ($image) {
+            if ($employee->image_url) {
+                Storage::disk('public')->deleteDirectory(dirname($employee->image_url));
+            }
+            $data['image_url'] = $image->store('Profile/' . Str::random(), 'public');
+        } else {
+            $data['image_url'] = $employee->image_url;
+        }
         $employee->update($data);
         $employee->load('role');
         return inertia("Admin/User/Show", [

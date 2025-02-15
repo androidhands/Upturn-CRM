@@ -14,10 +14,10 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 export default function Edit({ auth, user, company }) {
-    const { data, setData, put, errors, reset } = useForm({
+    const { data, setData, post, errors, reset } = useForm({
         user_id: user.id,
         role_id: user.employee.role_id || "",
-        department_id: user.department_id || "",
+        department_id: user.employee.department_id || "",
         date_of_birth: user.employee.date_of_birth || "",
         gender: user.employee.gender || "",
         education_degree: user.employee.education_degree || "",
@@ -25,14 +25,19 @@ export default function Edit({ auth, user, company }) {
         military_status: user.employee.military_status || "",
         marital_status: user.employee.marital_status || "",
         hiring_date: user.employee.hiring_date || "",
-        is_active: user.employee.is_active || true,
+        is_active: Boolean(user.employee.is_active),
+        image_url: "",
+        _method: "PUT",
     });
     const onSubmit = (e) => {
         e.preventDefault();
-        put(route("employee.update", [company.id, user.id, user.employee.id]));
+        post(route("employee.update", [company.id, user.id, user.employee.id]));
     };
-    const handleChange = (checked) => {
-        data.is_active = checked;
+    const handleSwitchChange = (name, value) => {
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
 
     const breadcrumbs = [
@@ -99,10 +104,33 @@ export default function Edit({ auth, user, company }) {
                                 </div>
                                 <form onSubmit={onSubmit}>
                                     <div className="mt-4">
+                                        <InputLabel
+                                            htmlFor="image_path"
+                                            value="Profile Image"
+                                        />
+                                        <TextInput
+                                            id="image_path"
+                                            type="file"
+                                            name="image"
+                                            className="mt-1 block w-full"
+                                            onChange={(e) =>
+                                                setData(
+                                                    "image_url",
+                                                    e.target.files[0]
+                                                )
+                                            }
+                                        />
+                                        <InputError
+                                            message={errors.image_url}
+                                            className="mt-2 "
+                                        />
+                                    </div>
+                                    <div className="mt-4">
                                         <ToggleSwitch
-                                            label={"Active Status"}
-                                            initialState={data.is_active}
-                                            onChange={handleChange}
+                                            label="Active Status"
+                                            name="is_active"
+                                            value={data.is_active}
+                                            onChange={handleSwitchChange}
                                         ></ToggleSwitch>
                                     </div>
                                     <div className="mt-4">
@@ -148,6 +176,7 @@ export default function Edit({ auth, user, company }) {
                                             id="employee_department"
                                             name="department_id"
                                             className="mt-1 block w-full"
+                                            value={data.department_id}
                                             onChange={(e) =>
                                                 setData(
                                                     "department_id",

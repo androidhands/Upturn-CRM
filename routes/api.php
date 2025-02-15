@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TenantMigrationController;
 use Database\Seeders\tenants\CountriesSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -18,10 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['api', 'checkPassword']], function () {
 
-    Route::post('/tenantsmigrate', function () {
-        Artisan::call('tenants:migrate');
-        // Artisan::call('rollback-tenants');
-    });
+    Route::get('/tenants/migrate', [TenantMigrationController::class, 'migrateTenants']);
 
     Route::get('/clear-cache', function () {
 
