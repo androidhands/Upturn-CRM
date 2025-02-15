@@ -5,6 +5,7 @@ namespace App\Repositories\Admin\Employee;
 use App\Http\Requests\Admin\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Admin\Employee\UpdateEmployeeRequest;
 use App\Http\Resources\CompanyResource;
+use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\RoleResource;
 use App\Http\Resources\UserResource;
@@ -23,10 +24,12 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $company = Company::find($companyId);
         $user = User::find($userId);
         $roles = $company->roles;
+        $departments = $company->departments;
         return inertia("Admin/Employee/Create", [
             "company" => new CompanyResource($company),
             "user" => new UserResource($user),
-            "roles" => RoleResource::collection($roles)
+            "roles" => RoleResource::collection($roles),
+            "departments" => DepartmentResource::collection($departments)
         ]);
     }
 
@@ -43,6 +46,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $company = Company::find($companyId);
         $user = User::find($userId);
         $company->load('roles');
+        $company->load('departments');
         $user->load('employee');
         return inertia("Admin/Employee/Edit", [
             "company" => new CompanyResource($company),

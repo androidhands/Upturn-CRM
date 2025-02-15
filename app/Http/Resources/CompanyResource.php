@@ -25,6 +25,7 @@ class CompanyResource extends JsonResource
             'logoUrl' => $this->logoUrl,
             'countries' => CountryResource::collection($this->whenLoaded('countries')),
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
+            'departments' => DepartmentResource::collection($this->whenLoaded('departments')),
             'created_at' => (new Carbon(time: $this->created_at))->format('Y-m-d'),
             'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d'),
         ];

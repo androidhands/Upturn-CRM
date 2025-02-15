@@ -25,6 +25,7 @@ class StoreEmployeeRequest extends FormRequest
         return [
 
             'role_id' => ['required'],
+            'department_id' => ['required'],
             'date_of_birth' => ['required', 'date'],
             'gender' => ['required', 'integer', 'max:1'],
             'education_degree' => ['required', 'string', 'max:150'],
@@ -33,6 +34,7 @@ class StoreEmployeeRequest extends FormRequest
             'marital_status' => ['required', 'string', 'max:50'],
             'hiring_date' => ['required', 'date'],
             'termination_date' => ['nullable', 'date'],
+            'is_active' => ['required', 'boolean']
 
         ];
     }

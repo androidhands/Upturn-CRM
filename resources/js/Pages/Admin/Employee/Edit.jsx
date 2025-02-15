@@ -3,6 +3,7 @@ import InputLabel from "@/Components/InputLabel";
 import PageHeader from "@/Components/PageHeader";
 import SelectInput from "@/Components/SelectInput";
 import TextInput from "@/Components/TextInput";
+import ToggleSwitch from "@/Components/TolggleSwitch";
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout";
 import {
     EDUCATION_DEGREE_LIST,
@@ -16,6 +17,7 @@ export default function Edit({ auth, user, company }) {
     const { data, setData, put, errors, reset } = useForm({
         user_id: user.id,
         role_id: user.employee.role_id || "",
+        department_id: user.department_id || "",
         date_of_birth: user.employee.date_of_birth || "",
         gender: user.employee.gender || "",
         education_degree: user.employee.education_degree || "",
@@ -23,10 +25,14 @@ export default function Edit({ auth, user, company }) {
         military_status: user.employee.military_status || "",
         marital_status: user.employee.marital_status || "",
         hiring_date: user.employee.hiring_date || "",
+        is_active: user.employee.is_active || true,
     });
     const onSubmit = (e) => {
         e.preventDefault();
         put(route("employee.update", [company.id, user.id, user.employee.id]));
+    };
+    const handleChange = (checked) => {
+        data.is_active = checked;
     };
 
     const breadcrumbs = [
@@ -93,6 +99,13 @@ export default function Edit({ auth, user, company }) {
                                 </div>
                                 <form onSubmit={onSubmit}>
                                     <div className="mt-4">
+                                        <ToggleSwitch
+                                            label={"Active Status"}
+                                            initialState={data.is_active}
+                                            onChange={handleChange}
+                                        ></ToggleSwitch>
+                                    </div>
+                                    <div className="mt-4">
                                         <InputLabel
                                             htmlFor="employee_role"
                                             value="Employee Role"
@@ -123,6 +136,41 @@ export default function Edit({ auth, user, company }) {
                                         </SelectInput>
                                         <InputError
                                             message={errors.role_id}
+                                            className="mt-2 "
+                                        />
+                                    </div>
+                                    <div className="mt-4">
+                                        <InputLabel
+                                            htmlFor="employee_department"
+                                            value="Employee Department"
+                                        />
+                                        <SelectInput
+                                            id="employee_department"
+                                            name="department_id"
+                                            className="mt-1 block w-full"
+                                            onChange={(e) =>
+                                                setData(
+                                                    "department_id",
+                                                    e.target.value
+                                                )
+                                            }
+                                        >
+                                            <option value="">
+                                                Select Department
+                                            </option>
+                                            {company.departments.map(
+                                                (department) => (
+                                                    <option
+                                                        key={department.id}
+                                                        value={department.id}
+                                                    >
+                                                        {department.name}
+                                                    </option>
+                                                )
+                                            )}
+                                        </SelectInput>
+                                        <InputError
+                                            message={errors.department_id}
                                             className="mt-2 "
                                         />
                                     </div>

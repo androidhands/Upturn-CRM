@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BusinessUnitController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\GovernorateController;
@@ -68,6 +69,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
         Route::resource('product', ProductController::class);
         Route::resource('role', RoleController::class);
         Route::resource('businessUnit', BusinessUnitController::class);
+        Route::resource('department', DepartmentController::class);
         Route::resource('region', RegionController::class);
         Route::resource('district', DistrictController::class);
         Route::resource('territory', TerritoryController::class);

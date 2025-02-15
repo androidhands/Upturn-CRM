@@ -1,4 +1,5 @@
 export { default as BusinessUnit } from "./BusinessUnit";
+export { default as Department } from "./Department";
 export { default as District } from "./District";
 export { default as Lines } from "./Lines";
 export { default as Office } from "./Office";

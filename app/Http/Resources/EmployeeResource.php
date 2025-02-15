@@ -21,6 +21,7 @@ class EmployeeResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'role_id' => $this->role_id,
+            'department_id' => $this->department_id,
             'date_of_birth' => $this->date_of_birth,
             'gender' => $this->gender,
             'education_degree' => $this->education_degree,
@@ -31,7 +32,9 @@ class EmployeeResource extends JsonResource
             'termination_date' => $this->termination_date,
             'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
             'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d'),
-            'role' => new RoleResource($this->whenLoaded('role'))
+            'is_active' => $this->is_active,
+            'role' => new RoleResource($this->whenLoaded('role')),
+            'department' => new DepartmentResource($this->whenLoaded('departments'))
         ];
     }
 }
