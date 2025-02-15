@@ -17,12 +17,14 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
+            'id' => $this->id,
             'name' => $this->name,
-            'email'=>$this->email,
-            'type'=>$this->type,
-            'company_id'=>$this->company_id,
-            'created_at'=>(new Carbon($this->created_at))->format('Y-m-d'),
+            'email' => $this->email,
+            'type' => $this->type,
+            'company_id' => $this->company_id,
+            'verified' => $this->hasVerifiedEmail(),
+            'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
+            'employee' => new EmployeeResource($this->whenLoaded('employee')),
         ];
     }
 }
