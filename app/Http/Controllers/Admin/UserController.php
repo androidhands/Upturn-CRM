@@ -45,7 +45,7 @@ class UserController extends Controller
      * Display the specified resource.
      */
     public function show(string $companyId, string $userId)
-    {
+    {  
         return $this->userRepositoryInterface->show($companyId, $userId);
     }
 

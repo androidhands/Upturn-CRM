@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\GovernorateController;
 use App\Http\Controllers\Admin\LineController;
 use App\Http\Controllers\Admin\OfficeController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TerritoryController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Employee;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -60,6 +62,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // Nested user routes under company
     Route::prefix('company/{company}')->group(function () {
         Route::resource('user', UserController::class);
+        Route::prefix('user/{user}')->group(function () {
+            Route::resource('employee', EmployeeController::class);
+        });
         Route::resource('product', ProductController::class);
         Route::resource('role', RoleController::class);
         Route::resource('businessUnit', BusinessUnitController::class);

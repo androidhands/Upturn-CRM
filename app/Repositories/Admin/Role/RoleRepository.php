@@ -9,7 +9,7 @@ use App\Models\Company;
 use App\Models\Role;
 
 class RoleRepository implements RoleRepositoryInterface{
-   
+
    /**
      * Display a listing of the resource.
      */
@@ -30,7 +30,7 @@ class RoleRepository implements RoleRepositoryInterface{
             $query->where("email", "like", "%" . request("email") . "%", );
         }
        $projects =  $query->orderBy($sortField,$sortDirection)->paginate(10);
-      
+
         return  inertia('Admin/Role/Index',[
             "roles"=> RoleResource::collection($projects),
             'queryParams' => request()->query() ?: null,
@@ -45,7 +45,7 @@ class RoleRepository implements RoleRepositoryInterface{
     public function create(Company $company)
     {
         return inertia("Admin/Role/Create",[
-            'company'=>new CompanyResource($company),   
+            'company'=>new CompanyResource($company),
         ]);
     }
 
@@ -68,7 +68,7 @@ class RoleRepository implements RoleRepositoryInterface{
     {
       return inertia("Admin/Role/Show",[
          "role"=>new RoleResource( $role),
-         "company"=> new CompanyResource($company )  
+         "company"=> new CompanyResource($company )
       ]);
     }
 
@@ -89,13 +89,6 @@ class RoleRepository implements RoleRepositoryInterface{
     public function update(UpdateRoleRequest $request,Company $company, Role $role)
     {
         $data = $request->validated();
-        $password = $data['password'] ?? null;
-        if($password){
-            $data['password'] = bcrypt($data['password']);
-        }else{
-            unset($data['password']);
-        }
-       
         $role->update($data);
       return  to_route('role.index',$company)->with('success',"Role \"$role->name\" updated successfully");
     }

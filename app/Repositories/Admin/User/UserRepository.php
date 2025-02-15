@@ -4,9 +4,13 @@ namespace App\Repositories\Admin\User;
 
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
+use App\Http\Resources\BusinessUnitResource;
 use App\Http\Resources\CompanyResource;
+use App\Http\Resources\EmployeeResource;
+use App\Http\Resources\RoleResource;
 use App\Http\Resources\UserResource;
 use App\Models\Company;
+use App\Models\Employee;
 use App\Models\User;
 
 class UserRepository implements UserRepositoryInterface
@@ -73,10 +77,23 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = User::find($userId);
         $company = Company::find($companyId);
-        return inertia("Admin/User/Show", [
-            "user" => new UserResource($user),
-            "company" => new CompanyResource($company)
-        ]);
+        $company->load('roles');
+        if ($user->hasVerifiedEmail()) {
+            $employee = $user->employee;
+            if ($employee) {
+                $employee->load(relations: 'role');
+            }
+            return inertia("Admin/User/Show", [
+                "user" => new UserResource($user),
+                "company" => new CompanyResource($company),
+                "employee" => $employee == null ? null : new EmployeeResource($employee)
+            ]);
+        } else {
+            return inertia("Admin/User/Show", [
+                "user" => new UserResource($user),
+                "company" => new CompanyResource($company)
+            ]);
+        }
     }
 
     /**
@@ -86,9 +103,12 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = User::find($userId);
         $company = Company::find($companyId);
+        $employee = $user->employee;
+        $employee->load(relations: 'role');
         return inertia('Admin/User/Edit', [
             'user' => new UserResource($user),
-            'company' => new CompanyResource($company)
+            'company' => new CompanyResource($company),
+            'employee' => new EmployeeResource($employee)
         ]);
     }
 

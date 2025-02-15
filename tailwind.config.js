@@ -19,5 +19,15 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        function ({ addUtilities }) {
+            addUtilities({
+              '.dark-calendar-icon': {
+                '&::-webkit-calendar-picker-indicator': {
+                  filter: 'invert(1)',
+                },
+              },
+            });
+          },],
 };

@@ -6,7 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CompanyResource extends JsonResource
+
+class DepartmentResource extends JsonResource
 {
     //    wrap -> false make the returned object is a clear object ex {data:{}}-> {}
     public static $wrap = false;
@@ -19,13 +20,9 @@ class CompanyResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'company_id' => $this->company_id,
             'name' => $this->name,
-            'industry' => $this->industry,
-            'type' => $this->type,
-            'logoUrl' => $this->logoUrl,
-            'countries' => CountryResource::collection($this->whenLoaded('countries')),
-            'roles' => RoleResource::collection($this->whenLoaded('roles')),
-            'created_at' => (new Carbon(time: $this->created_at))->format('Y-m-d'),
+            'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
             'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d'),
         ];
     }
